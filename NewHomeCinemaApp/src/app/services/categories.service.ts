@@ -9,13 +9,18 @@ import {Observable} from 'rxjs';
 
 export class CategoriesService {
 
-  apiRoute:string = 'http://localhost:63914/api/categories';
+  categoriesRoute:string = 'http://localhost:63913/api/categories';
   categories:Category[]
 
   constructor(private http:HttpClient) { }
 
   public GetCategories():Observable<Category[]>
   {
-      return this.http.get<Category[]>(this.apiRoute);
+      return this.http.get<Category[]>(this.categoriesRoute);
+  }
+
+  public GetCategory(id:string):Observable<Category>
+  {
+      return this.http.get<Category>(this.categoriesRoute + '/' + id);
   }
 }

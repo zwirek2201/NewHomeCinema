@@ -1,0 +1,21 @@
+.main-navbar {
+    margin: 20px 0px;
+    padding: 0px 20px;
+}
+
+.brand-large {
+    font-size: 40px;
+    font-weight:500;
+    color:#4792FF;
+}
+
+.brand-small {
+    font-size: 30px;
+    font-weight:300; 
+    color:#5E5E5E;   
+}
+
+.navbar-item
+{
+	vertical-align: bottom;
+}

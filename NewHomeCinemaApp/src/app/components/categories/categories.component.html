@@ -1,3 +1,5 @@
-<ul *ngFor="let category of categories">
-    <li>{{ category.name }}</li>
-</ul>
+<div class="categories-list">
+    <ul class="list-group">
+        <li *ngFor="let category of categories" class="list-group-item">{{ category.name }}</li>
+    </ul>
+</div>
