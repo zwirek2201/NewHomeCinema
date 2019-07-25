@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import {Category} from '../models/category';
-
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoriesService {
 
-  constructor() { }
+  apiRoute:string = 'http://localhost:63914/api/categories';
+  categories:Category[]
 
-  public GetCategories()
+  constructor(private http:HttpClient) { }
+
+  public GetCategories():Observable<Category[]>
   {
-      return [
-        {
-          id:1,
-          name:'asd',
-          description:'dsa'
-        }
-      ]
+      return this.http.get<Category[]>(this.apiRoute);
   }
 }
