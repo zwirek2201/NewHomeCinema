@@ -9,3 +9,19 @@
     padding: 0px 20px;
     display:block;
 }
+
+.more-button {
+    float:right;
+    background-color:#eeeeee;
+    height:30px;
+    padding:0px 20px;
+    border-width:0px;
+    font-weight: 300;
+    transition: 0.3s;
+}
+
+.more-button:hover {
+    background-color:#4792FF;
+    color:white;
+    transition: 0.3s;
+}

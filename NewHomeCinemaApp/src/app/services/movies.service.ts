@@ -14,9 +14,16 @@ export class MoviesService {
   
   constructor(private http:HttpClient) { }
 
-  public GetMovies():Observable<Movie[]>
+  public GetMovies(skip:number = 0, limit:number = 0):Observable<Movie[]>
   {
-      return this.http.get<Movie[]>(this.moviesRoute);
+      var url:string = this.moviesRoute;
+
+      if(skip >= 0 && limit > 0)
+      {
+        url += '?skip=' + skip + '&limit=' + limit;
+      }
+
+      return this.http.get<Movie[]>(url);
   }
 
   public GetCategoryMovies(id:number):Observable<Movie[]>
