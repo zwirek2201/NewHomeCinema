@@ -13,13 +13,22 @@ namespace HomeCinema.Controllers
     [Route("api/Categories")]
     public class CategoriesController : Controller
     {
+        private readonly ICategoriesManager _categoriesManager;
+        private readonly IMoviesManager _moviesManager;
+
+        public CategoriesController(ICategoriesManager categoriesManager, IMoviesManager moviesManager)
+        {
+            _categoriesManager = categoriesManager;
+            _moviesManager = moviesManager;
+        }
+
         // GET: api/Categories
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                List<Category> categories = CategoriesManager.GetCategories();
+                List<Category> categories = await _categoriesManager.GetCategories();
 
                 return Ok(categories);
             }
@@ -31,13 +40,13 @@ namespace HomeCinema.Controllers
 
         // GET: api/Categories/5
         [HttpGet("{id}", Name = "GetCategories")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    Category category = CategoriesManager.GetCategory(id);
+                    Category category = await _categoriesManager.GetCategory(id);
 
                     return Ok(category);
                 }
@@ -58,13 +67,13 @@ namespace HomeCinema.Controllers
 
         // GET: api/Categories/5
         [HttpGet("{id}/movies", Name = "GetMovieCategories")]
-        public IActionResult GetCategoryMovies(int id)
+        public async Task<IActionResult> GetCategoryMovies(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    List<Movie> movies = MoviesManager.GetMoviesByCategory(id);
+                    List<Movie> movies = await _moviesManager.GetMoviesByCategory(id);
 
                     return Ok(movies);
                 }
@@ -85,13 +94,13 @@ namespace HomeCinema.Controllers
 
         // POST: api/Categories
         [HttpPost]
-        public IActionResult Post([FromBody]Category value)
+        public async Task<IActionResult> Post([FromBody]Category value)
         {
             try
             {
                 if (value != null)
                 {
-                    Category category = CategoriesManager.AddCategory(value);
+                    Category category = await _categoriesManager.AddCategory(value);
 
                     return Ok(category);
                 }
@@ -114,13 +123,13 @@ namespace HomeCinema.Controllers
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    CategoriesManager.DeleteCategory(id);
+                    await _categoriesManager.DeleteCategory(id);
 
                     return Ok();
                 }

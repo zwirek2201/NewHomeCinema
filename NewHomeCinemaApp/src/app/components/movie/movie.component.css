@@ -1,6 +1,29 @@
 .movie-item {
-    height: 300px;
+    min-height: 280px;
+    height:auto;
     width:200px;
-    background-color:red;
-    margin: 5px;
+    background-color:#ffffff;
+    display:block;
+    padding:10px;
+    border-width: 1px;
+    border-color: #000000;
+    align-self: stretch;
+}
+
+.movie-poster {
+    width:150px;
+    display:block;
+    margin:auto;
+    border-radius:5px;
+}
+
+.title-container {
+    margin-top:5px;
+}
+
+.movie-title {
+    text-align: center;
+    font-size: 20px;
+    margin:0px;
+    vertical-align: bottom;
 }

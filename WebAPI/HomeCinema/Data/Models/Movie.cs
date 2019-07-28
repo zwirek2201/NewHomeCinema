@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeCinema.Data
 {
-    public class Movie : DataModel
+    public class Movie
     {
         public int Id { get; set; }
 
@@ -19,15 +19,5 @@ namespace HomeCinema.Data
         public int CategoryId { get; set; }
 
         public string PosterUrl { get; set; }
-
-        public override void FillFromReader(SqlDataReader reader)
-        {
-            Id = reader.GetInt32(0);
-            Title = reader.GetString(1);
-            SubTitle = reader.GetString(2);
-            Description = reader.GetString(3);
-            CategoryId = reader.GetInt32(4);
-            PosterUrl = reader.GetString(5);
-        }
     }
 }

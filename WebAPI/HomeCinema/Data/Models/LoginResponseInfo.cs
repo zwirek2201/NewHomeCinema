@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeCinema.Data
 {
-    public class LoginResponseInfo : DataModel
+    public class LoginResponseInfo
     {
         public int UserId { get; set; }
 
@@ -15,13 +15,5 @@ namespace HomeCinema.Data
         public DateTime Created { get; set; }
 
         public DateTime Expires { get; set; }
-
-        public override void FillFromReader(SqlDataReader reader)
-        {
-            UserId = Convert.ToInt32(reader["UserId"]);
-            Token = reader["Token"].ToString();
-            Created = DateTime.Parse(reader["Created"].ToString());
-            Expires = DateTime.Parse(reader["Expires"].ToString());
-        }
     }
 }

@@ -1,7 +1,11 @@
 .movies-list {
     display:flex;
     flex-wrap: wrap;
-    align-items: center;    
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.movies-container {
     padding: 0px 20px;
+    display:block;
 }

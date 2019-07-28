@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 
 export class CategoriesService {
 
-  categoriesRoute:string = 'http://localhost:63913/api/categories';
+  categoriesRoute:string = 'http://localhost:63914/api/categories';
   categories:Category[]
 
   constructor(private http:HttpClient) { }

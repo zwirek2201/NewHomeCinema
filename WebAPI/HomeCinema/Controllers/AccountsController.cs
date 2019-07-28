@@ -12,13 +12,20 @@ namespace HomeCinema.Controllers
     [Route("api/Accounts")]
     public class AccountsController : Controller
     {
+        private IUsersManager _usersManager;
+
+        public AccountsController(IUsersManager usersManager)
+        {
+            _usersManager = usersManager;
+        }
+
         // GET: api/Authorization/5
         [HttpPost("register")]
-        public IActionResult Register([FromBody]RegisterRequestInfo info)
+        public async Task<IActionResult> Register([FromBody]RegisterRequestInfo info)
         {
             try
             {
-                UserManager.RegisterUser(info);
+                await _usersManager.AddUser(info);
 
                 return Ok();
             }
@@ -29,9 +36,9 @@ namespace HomeCinema.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody]LoginRequestInfo info)
+        public async Task<IActionResult> Login([FromBody]LoginRequestInfo info)
         {
-            LoginResponseInfo response = UserManager.AuthenticateUser(info);
+            LoginResponseInfo response = await _usersManager.AuthenticateUser(info);
 
             if(response != null)
             {
@@ -44,12 +51,12 @@ namespace HomeCinema.Controllers
         }
 
         [HttpPost("logout")]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
             if (Request.Headers.ContainsKey("access-token"))
             {
                 string token = Request.Headers["access-token"];
-                UserManager.LogOut(token);
+                await _usersManager.LogOut(token);
 
                 return Ok();
             }

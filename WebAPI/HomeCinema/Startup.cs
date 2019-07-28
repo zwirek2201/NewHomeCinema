@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HomeCinema.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,20 @@ namespace HomeCinema
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o =>
+            {
+                o.AddPolicy("myPolicy", p =>
+                {
+                    p.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
+
+            services.AddTransient<ICategoriesManager, CategoriesManager>();
+            services.AddTransient<IMoviesManager, MoviesManager>();
+            services.AddTransient<IRoomsManager, RoomsManager>();
+            services.AddTransient<ISeatsManager, SeatsManager>();
+            services.AddTransient<IUsersManager, UsersManager>();
+
             services.AddMvc();
         }
 
@@ -33,6 +48,8 @@ namespace HomeCinema
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("myPolicy");
 
             app.UseMvc();
         }

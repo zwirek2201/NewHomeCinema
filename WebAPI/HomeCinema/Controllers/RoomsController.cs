@@ -12,14 +12,22 @@ namespace HomeCinema.Controllers
     [Route("api/Rooms")]
     public class RoomsController : Controller
     {
+        private IRoomsManager _roomsManager;
+        private ISeatsManager _seatsManager;
+
+        public RoomsController(IRoomsManager roomsManager, ISeatsManager seatsManager)
+        {
+            _roomsManager = roomsManager;
+            _seatsManager = seatsManager;
+        }
+
         // GET: api/Rooms
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-
             try
             {
-                List<Room> rooms = RoomsManager.GetRooms();
+                List<Room> rooms = await _roomsManager.GetRooms();
 
                 return Ok(rooms);
             }
@@ -31,13 +39,13 @@ namespace HomeCinema.Controllers
 
         // GET: api/Rooms/5
         [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    Room room = RoomsManager.GetRoom(id);
+                    Room room = await _roomsManager.GetRoom(id);
 
                     return Ok(room);
                 }
@@ -54,13 +62,13 @@ namespace HomeCinema.Controllers
 
         // GET: api/Rooms/5/Seats
         [HttpGet("{id}/seats", Name = "GetSeats")]
-        public IActionResult GetSeats(int id)
+        public async Task<IActionResult> GetSeats(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    List<Seat> seats = SeatManager.GetRoomSeats(id);
+                    List<Seat> seats = await _seatsManager.GetRoomSeats(id);
 
                     return Ok(seats);
                 }
@@ -75,26 +83,5 @@ namespace HomeCinema.Controllers
             }
 
         }
-
-        //// POST: api/Rooms
-        //[HttpPost]
-        //public IActionResult Post([FromBody]string value)
-        //{
-
-        //}
-
-        //// PUT: api/Rooms/5
-        //[HttpPut("{id}")]
-        //public IActionResult Put(int id, [FromBody]string value)
-        //{
-
-        //}
-
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-
-        //}
     }
 }

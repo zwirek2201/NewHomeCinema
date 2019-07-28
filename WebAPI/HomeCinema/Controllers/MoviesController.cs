@@ -12,13 +12,20 @@ namespace HomeCinema.Controllers
     [Route("api/Movies")]
     public class MoviesController : Controller
     {
+        private IMoviesManager _moviesManager;
+
+        public MoviesController(IMoviesManager moviesManager)
+        {
+            _moviesManager = moviesManager;
+        }
+
         // GET: api/Movies
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                List<Movie> movies = MoviesManager.GetMovies();
+                List<Movie> movies = await _moviesManager.GetMovies();
 
                 return Ok(movies);
             }
@@ -30,13 +37,13 @@ namespace HomeCinema.Controllers
 
         // GET: api/Movies/5
         [HttpGet("{id}", Name = "GetMovies")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    Movie movie = MoviesManager.GetMovie(id);
+                    Movie movie = await _moviesManager.GetMovie(id);
 
                     return Ok(movie);
                 }
@@ -57,13 +64,13 @@ namespace HomeCinema.Controllers
 
         // POST: api/Movies
         [HttpPost]
-        public IActionResult Post([FromBody]Movie value)
+        public async Task<IActionResult> Post([FromBody]Movie value)
         {
             try
             {
                 if (value != null)
                 {
-                    Movie movie = MoviesManager.AddMovie(value);
+                    Movie movie = await _moviesManager.AddMovie(value);
 
                     return Ok(movie);
                 }
@@ -80,19 +87,20 @@ namespace HomeCinema.Controllers
 
         // PUT: api/Movies/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(int id, [FromBody]string value)
         {
+            return NotFound();
         }
 
         // DELETE: api/Movies/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    MoviesManager.DeleteMovie(id);
+                    await _moviesManager.DeleteMovie(id);
 
                     return Ok();
                 }

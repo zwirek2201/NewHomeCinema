@@ -10,13 +10,20 @@ namespace HomeCinema.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private IUsersManager _usersManager;
+
+        public ValuesController(IUsersManager usersManager)
+        {
+            _usersManager = usersManager;
+        }
+
         // GET api/values
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                if (UserManager.CheckUserAuthentication(Request))
+                if (await _usersManager.CheckUserAuthentication(Request))
                 {
                     return Ok(new string[] { "value1", "value2" });
                 }

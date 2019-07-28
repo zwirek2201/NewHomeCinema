@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HomeCinema.Data
 {
-    public abstract class DataModel
+    public interface IRoomsManager
     {
-        public abstract void FillFromReader(SqlDataReader reader);
+        Task<List<Room>> GetRooms();
+
+        Task<Room> GetRoom(int id);
     }
 }

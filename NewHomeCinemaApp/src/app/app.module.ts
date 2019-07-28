@@ -13,6 +13,7 @@ import { MainComponent } from './components/pages/main/main.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import { MovieComponent } from './components/movie/movie.component';
+import { LibraryComponent } from './components/pages/library/library.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MovieComponent } from './components/movie/movie.component';
     MainComponent,
     NavbarComponent,
     MoviesComponent,
-    MovieComponent
+    MovieComponent,
+    LibraryComponent
   ],
   imports: [
     BrowserModule,
