@@ -55,7 +55,7 @@ namespace HomeCinema.Data
             }
         }
 
-        public async Task<Movie> GetMovie(int id)
+        public async Task<Movie> GetMovieById(int id)
         {
             using (IDbConnection conn = Connection)
             {
@@ -66,12 +66,17 @@ namespace HomeCinema.Data
             }
         }
 
-        public async Task<List<Movie>> GetMovies()
+        public async Task<List<Movie>> GetMovies(int skip, int limit)
         {
             using (IDbConnection conn = Connection)
             {
                 conn.Open();
                 var result = await conn.QueryAsync<Movie>(getMoviesQuery);
+
+                if(skip >= 0 && limit > 0)
+                {
+                    result = result.Skip(skip).Take(limit);
+                }
 
                 return result.ToList();
             }

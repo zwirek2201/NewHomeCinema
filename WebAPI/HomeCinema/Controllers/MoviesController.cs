@@ -21,11 +21,11 @@ namespace HomeCinema.Controllers
 
         // GET: api/Movies
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int skip = 0, int limit = 0)
         {
             try
             {
-                List<Movie> movies = await _moviesManager.GetMovies();
+                List<Movie> movies = await _moviesManager.GetMovies(skip, limit);
 
                 return Ok(movies);
             }
@@ -36,14 +36,14 @@ namespace HomeCinema.Controllers
         }
 
         // GET: api/Movies/5
-        [HttpGet("{id}", Name = "GetMovies")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("{id}", Name = "GetMovieById")]
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    Movie movie = await _moviesManager.GetMovie(id);
+                    Movie movie = await _moviesManager.GetMovieById(id);
 
                     return Ok(movie);
                 }

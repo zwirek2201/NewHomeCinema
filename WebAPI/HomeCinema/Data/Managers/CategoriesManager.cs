@@ -165,7 +165,7 @@ namespace HomeCinema
             using (IDbConnection conn = Connection)
             {
                 conn.Open();
-                var result = await conn.QueryAsync<Category>(getCategoryByIdQuery);
+                var result = await conn.QueryAsync<Category>(getCategoryByIdQuery, new { Id = id});
 
                 return result.FirstOrDefault();
             }

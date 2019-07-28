@@ -15,11 +15,13 @@ namespace HomeCinema.Controllers
     {
         private readonly ICategoriesManager _categoriesManager;
         private readonly IMoviesManager _moviesManager;
+        private readonly IUsersManager _usersManager;
 
-        public CategoriesController(ICategoriesManager categoriesManager, IMoviesManager moviesManager)
+        public CategoriesController(ICategoriesManager categoriesManager, IMoviesManager moviesManager, IUsersManager usersManager)
         {
             _categoriesManager = categoriesManager;
             _moviesManager = moviesManager;
+            _usersManager = usersManager;
         }
 
         // GET: api/Categories
@@ -98,15 +100,22 @@ namespace HomeCinema.Controllers
         {
             try
             {
-                if (value != null)
+                if (await _usersManager.CheckUserAuthentication(Request))
                 {
-                    Category category = await _categoriesManager.AddCategory(value);
+                    if (value != null)
+                    {
+                        Category category = await _categoriesManager.AddCategory(value);
 
-                    return Ok(category);
+                        return Ok(category);
+                    }
+                    else
+                    {
+                        return NoContent();
+                    }
                 }
                 else
                 {
-                    return NoContent();
+                    return Unauthorized();
                 }
             }
             catch (CouldNotPerformOperationException ex)
@@ -127,15 +136,22 @@ namespace HomeCinema.Controllers
         {
             try
             {
-                if (id > 0)
+                if (await _usersManager.CheckUserAuthentication(Request))
                 {
-                    await _categoriesManager.DeleteCategory(id);
+                    if (id > 0)
+                    {
+                        await _categoriesManager.DeleteCategory(id);
 
-                    return Ok();
+                        return Ok();
+                    }
+                    else
+                    {
+                        return NoContent();
+                    }
                 }
                 else
                 {
-                    return NoContent();
+                    return Unauthorized();
                 }
             }
             catch(NotFoundException ex)

@@ -7,11 +7,11 @@ namespace HomeCinema.Data
 {
     public interface IMoviesManager
     {
-        Task<List<Movie>> GetMovies();
+        Task<List<Movie>> GetMovies(int skip, int limit);
 
         Task<List<Movie>> GetMoviesByCategory(int categoryId);
 
-        Task<Movie> GetMovie(int id);
+        Task<Movie> GetMovieById(int id);
 
         Task<Movie> AddMovie(Movie movie);
 
