@@ -1,0 +1,49 @@
+ .screening {
+     margin-top:10px;
+ }
+
+ .title-container {
+    padding: 5px 10px; 
+    display:block;
+    background-color:#eeeeee;
+ }
+
+ .movie-title {
+     margin:0px;
+     font-size:16px;
+     text-overflow: ellipsis;     
+     overflow: hidden; 
+     white-space: nowrap;
+     font-weight:400;     
+ }
+
+ .movie-details {
+     font-size:12px;
+     margin:0px;
+     font-weight:300;
+ }
+ 
+ .movie-screenings {
+     margin:0px;
+     padding:10px;
+     display:flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: flex-start;
+}
+
+.screening-button {
+    border-width:0px;
+    height: 35px;
+    width:60px;
+    font-size:16px;
+    background-color:#f8f8f8;
+    margin-left:10px;
+    transition:0.3s;
+}
+
+.screening-button:hover {
+    background-color:#4792FF;
+    color:white;
+   transition:0.3s; 
+}

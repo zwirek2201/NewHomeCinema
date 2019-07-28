@@ -14,6 +14,9 @@ import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { LibraryComponent } from './components/pages/library/library.component';
+import { ScreeningsComponent } from './components/screenings/screenings.component';
+import { ScreeningComponent } from './components/screening/screening.component';
+import { LoginInfoComponent } from './components/layout/login-info/login-info.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { LibraryComponent } from './components/pages/library/library.component';
     NavbarComponent,
     MoviesComponent,
     MovieComponent,
-    LibraryComponent
+    LibraryComponent,
+    ScreeningsComponent,
+    ScreeningComponent,
+    LoginInfoComponent
   ],
   imports: [
     BrowserModule,
