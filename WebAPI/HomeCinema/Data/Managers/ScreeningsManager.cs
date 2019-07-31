@@ -43,7 +43,7 @@ namespace HomeCinema.Data
         {
             using (IDbConnection conn = Connection)
             {
-                var result = await conn.QueryAsync<Screening>(getScreeningsQuery, new { Date = date});
+                var result = await conn.QueryAsync<Screening>(getDayScreeningsQuery, new { Date = date});
 
                 return result.ToList();
             }

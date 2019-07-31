@@ -7,6 +7,6 @@ namespace HomeCinema.Data
 {
     public interface IRepertoirManager
     {
-        Task<DayRepertoir> GetDayRepertoir(DateTime date);
+        Task<List<MovieScreeningList>> GetDayRepertoir(DateTime date);
     }
 }

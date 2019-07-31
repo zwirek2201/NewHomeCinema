@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HomeCinema.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace HomeCinema.Controllers
 {
@@ -23,8 +24,17 @@ namespace HomeCinema.Controllers
         [HttpGet("{date}", Name = "GetDayRepertoirs")]
         public async Task<IActionResult> GetDayRepertoir(string date)
         {
-            var result = await _repertoirManager.GetDayRepertoir(DateTime.Now);
-            return Ok(result);
+            DateTime repertoirDate;
+
+            if (DateTime.TryParseExact(date, "yyyy-M-d", CultureInfo.InvariantCulture, DateTimeStyles.None, out repertoirDate))
+            {
+                var result = await _repertoirManager.GetDayRepertoir(repertoirDate);
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest("Repertoir date format is incorrect.");
+            }
         }
         
         // POST: api/Repertoirs

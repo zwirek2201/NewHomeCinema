@@ -66,7 +66,7 @@ namespace HomeCinema.Data
             }
         }
 
-        public async Task<List<Movie>> GetMovies(int skip, int limit)
+        public async Task<List<Movie>> GetMovies(int skip = 0, int limit = 0)
         {
             using (IDbConnection conn = Connection)
             {

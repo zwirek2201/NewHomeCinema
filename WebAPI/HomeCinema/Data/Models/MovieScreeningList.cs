@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace HomeCinema.Data
 {
-    public class DayRepertoir
+    public class MovieScreeningList
     {
         public Movie Movie { get; set; }
-
-        public DateTime Date { get; set; }
 
         public string AudioType { get; set; }
 

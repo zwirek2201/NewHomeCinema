@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MovieScreenings } from '../../models/MovieScreenings';
 
 @Component({
   selector: 'app-screening',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScreeningComponent implements OnInit {
 
+  @Input() screening:MovieScreenings;
+  
   constructor() { }
 
   ngOnInit() {

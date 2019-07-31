@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ScreeningsService} from '../../services/screenings.service';
 import {Screening} from '../../models/Screening';
 import {Movie} from '../../models/Movie';
-import {MoviesService} from '../../services/movies.service';
+import {MovieScreenings} from '../../models/MovieScreenings';
+import {RepertoirService} from '../../services/repertoir.service';
 
 @Component({
   selector: 'app-screenings',
@@ -12,51 +12,21 @@ import {MoviesService} from '../../services/movies.service';
 
 export class ScreeningsComponent implements OnInit {
 
-  screenings:Screening[];
-  movies:Movie[];
-  screeningOptions:ScreeningOptions[] = new ScreeningOptions[]();
+  movieScreenings:MovieScreenings[];
 
-  constructor(private screeningService:ScreeningsService, private moviesService:MoviesService) { }
+  constructor(private repertoirService:RepertoirService) { }
 
   ngOnInit() {
-    this.screeningService.GetScreenings().subscribe(s => {
-      this.screenings = s;    
-
-      this.moviesService.GetMovies().subscribe(m => {
-        this.movies = m;
-
-        for(var _i = 0; _i < this.screenings.length;_i++) 
-        {
-          var screening = this.screenings[_i];         
-          var screeningOption = this.screeningOptions.find(s => s.Movie.id == screening.MovieId && s.AudioType == screening.AudioType && s.VideoType == screening.VideoType)
-          
-          if(screeningOption != null)
-          {
-            screeningOption.Screenings.push(screening);
-          }
-          else
-          {
-            var screeningOption = new ScreeningOptions()           
-            screeningOption.Movie = this.movies.find(m => m.id == screening.MovieId)[0],
-            screeningOption.AudioType = screening.AudioType,
-            screeningOption.VideoType = screening.VideoType
-            screeningOption.Screenings.push(screening);
-          }
-        }
-
-        console.log(this.screeningOptions.length);
-      });
+    var d = new Date();
+    d.setYear(2019);
+    d.setMonth(6);
+    d.setDate(29);
+    this.repertoirService.GetDayRepertoir(d).subscribe(r => {
+      this.movieScreenings = r;
+      console.log(this.movieScreenings);
     });
-
-
   }
 
 }
 
-export class ScreeningOptions {
-  Movie:Movie;
-  Date:Date;
-  AudioType:string;
-  VideoType:string;
-  Screenings:Screening[];
-}
+
