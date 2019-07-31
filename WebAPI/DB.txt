@@ -1,6 +1,103 @@
+USE [master]
+GO
+/****** Object:  Database [HomeCinema]    Script Date: 31/07/2019 22:31:59 ******/
+CREATE DATABASE [HomeCinema]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'HomeCinema', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLSERVER\MSSQL\DATA\HomeCinema.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'HomeCinema_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLSERVER\MSSQL\DATA\HomeCinema_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [HomeCinema] SET COMPATIBILITY_LEVEL = 130
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [HomeCinema].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [HomeCinema] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [HomeCinema] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [HomeCinema] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [HomeCinema] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [HomeCinema] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [HomeCinema] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [HomeCinema] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [HomeCinema] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [HomeCinema] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [HomeCinema] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [HomeCinema] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [HomeCinema] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [HomeCinema] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [HomeCinema] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [HomeCinema] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [HomeCinema] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [HomeCinema] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [HomeCinema] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [HomeCinema] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [HomeCinema] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [HomeCinema] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [HomeCinema] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [HomeCinema] SET RECOVERY FULL 
+GO
+ALTER DATABASE [HomeCinema] SET  MULTI_USER 
+GO
+ALTER DATABASE [HomeCinema] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [HomeCinema] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [HomeCinema] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [HomeCinema] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [HomeCinema] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'HomeCinema', N'ON'
+GO
+ALTER DATABASE [HomeCinema] SET QUERY_STORE = OFF
+GO
 USE [HomeCinema]
 GO
-/****** Object:  Table [dbo].[Categories]    Script Date: 23/07/2019 22:38:04 ******/
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [HomeCinema]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16,7 +113,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Movies]    Script Date: 23/07/2019 22:38:04 ******/
+/****** Object:  Table [dbo].[Movies]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -34,7 +131,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Rooms]    Script Date: 23/07/2019 22:38:04 ******/
+/****** Object:  Table [dbo].[Rooms]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -49,7 +146,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Screenings]    Script Date: 23/07/2019 22:38:04 ******/
+/****** Object:  Table [dbo].[Screenings]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -67,7 +164,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Seats]    Script Date: 23/07/2019 22:38:04 ******/
+/****** Object:  Table [dbo].[Seats]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -84,7 +181,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SeatTypes]    Script Date: 23/07/2019 22:38:04 ******/
+/****** Object:  Table [dbo].[SeatTypes]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -98,7 +195,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserAuthentication]    Script Date: 23/07/2019 22:38:04 ******/
+/****** Object:  Table [dbo].[UserAuthentication]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +207,7 @@ CREATE TABLE [dbo].[UserAuthentication](
 	[Expires] [datetime] NOT NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 23/07/2019 22:38:04 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 31/07/2019 22:32:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -141,6 +238,30 @@ SET IDENTITY_INSERT [dbo].[Movies] ON
 GO
 INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (1, N'Spider-Man', N'Homecoming', N'Spider Man homecomes', 4, N'Http')
 GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (2, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (3, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (4, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (5, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (6, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (7, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (8, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (9, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (10, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (11, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (12, N'test', N'test', N'test', 4, N'test')
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [SubTitle], [Description], [CategoryId], [PosterUrl]) VALUES (13, N'test', N'test', N'test', 4, N'test')
+GO
 SET IDENTITY_INSERT [dbo].[Movies] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Rooms] ON 
@@ -150,6 +271,16 @@ GO
 INSERT [dbo].[Rooms] ([Id], [Name], [Description]) VALUES (2, N'2', N'Sala 2')
 GO
 SET IDENTITY_INSERT [dbo].[Rooms] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Screenings] ON 
+GO
+INSERT [dbo].[Screenings] ([Id], [MovieId], [RoomId], [Date], [AudioType], [VideoType]) VALUES (1, 1, 1, CAST(N'2019-07-29T09:00:00.000' AS DateTime), N'Dubbing', N'2D')
+GO
+INSERT [dbo].[Screenings] ([Id], [MovieId], [RoomId], [Date], [AudioType], [VideoType]) VALUES (2, 1, 1, CAST(N'2019-07-29T10:00:00.000' AS DateTime), N'Dubbing', N'3D')
+GO
+INSERT [dbo].[Screenings] ([Id], [MovieId], [RoomId], [Date], [AudioType], [VideoType]) VALUES (3, 1, 1, CAST(N'2019-07-29T12:30:00.000' AS DateTime), N'Dubbing', N'3D')
+GO
+SET IDENTITY_INSERT [dbo].[Screenings] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Seats] ON 
 GO
@@ -212,4 +343,8 @@ REFERENCES [dbo].[SeatTypes] ([Id])
 GO
 ALTER TABLE [dbo].[UserAuthentication]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[Users] ([Id])
+GO
+USE [master]
+GO
+ALTER DATABASE [HomeCinema] SET  READ_WRITE 
 GO
