@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class ScreeningsService {
 
-  screeningsRoute:string = 'http://localhost:63914/api/screenings';
+  screeningsRoute:string = 'http://localhost:5000/api/screenings';
   
   constructor(private http:HttpClient) { }
 

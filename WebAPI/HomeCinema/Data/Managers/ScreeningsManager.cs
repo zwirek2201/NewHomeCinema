@@ -12,6 +12,7 @@ namespace HomeCinema.Data
     public class ScreeningsManager : IScreeningsManager
     {
         private string getScreeningsQuery = "select * from Screenings";
+        private string getDayScreeningsQuery = "select * from screenings where convert(varchar(10), Date, 102)  = convert(varchar(10), @Date, 102)";
 
         private IConfiguration _config;
 
@@ -33,6 +34,16 @@ namespace HomeCinema.Data
             using (IDbConnection conn = Connection)
             {
                 var result = await conn.QueryAsync<Screening>(getScreeningsQuery);
+
+                return result.ToList();
+            }
+        }
+
+        public async Task<List<Screening>> GetDayScrenings(DateTime date)
+        {
+            using (IDbConnection conn = Connection)
+            {
+                var result = await conn.QueryAsync<Screening>(getScreeningsQuery, new { Date = date});
 
                 return result.ToList();
             }

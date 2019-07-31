@@ -8,5 +8,7 @@ namespace HomeCinema.Data
     public interface IScreeningsManager
     {
         Task<List<Screening>> GetScreenings();
+
+        Task<List<Screening>> GetDayScrenings(DateTime date);
     }
 }

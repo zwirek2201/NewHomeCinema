@@ -38,6 +38,7 @@ namespace HomeCinema
             services.AddTransient<ISeatsManager, SeatsManager>();
             services.AddTransient<IUsersManager, UsersManager>();
             services.AddTransient<IScreeningsManager, ScreeningsManager>();
+            services.AddTransient<IRepertoirManager, RepertoirManager>();
 
             services.AddMvc();
         }

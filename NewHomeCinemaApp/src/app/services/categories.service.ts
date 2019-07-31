@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import {Category} from '../models/category';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Globals} from './Globals';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CategoriesService {
-
-  categoriesRoute:string = 'http://localhost:63914/api/categories';
+  categoriesRoute:string = 'http://localhost:5000/api/categories';
   categories:Category[]
 
   constructor(private http:HttpClient) { }

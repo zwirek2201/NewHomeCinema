@@ -9,8 +9,8 @@ import {Observable} from 'rxjs';
 
 export class MoviesService {
 
-  moviesRoute:string = 'http://localhost:63914/api/movies';
-  categoriesRoute:string = 'http://localhost:63914/api/categories';  
+  moviesRoute:string = 'http://localhost:5000/api/movies';
+  categoriesRoute:string = 'http://localhost:5000/api/categories';  
   
   constructor(private http:HttpClient) { }
 
