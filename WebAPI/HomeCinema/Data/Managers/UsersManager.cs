@@ -197,9 +197,9 @@ namespace HomeCinema.Data
             {
                 conn.Open();
 
-                var result = await conn.QuerySingleAsync<User>(getUserByEmailQuery, new { Email = email });
+                var result = await conn.QueryAsync<User>(getUserByEmailQuery, new { Email = email });
 
-                return result;
+                return result.FirstOrDefault();
             }
         }
     }

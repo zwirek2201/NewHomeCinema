@@ -2,5 +2,5 @@
     <div class="movies-list">
         <app-movie *ngFor="let movie of movies" [movie]="movie"></app-movie>
     </div>
-    <button (click)="loadMore()" class="more-button">Więcej</button>
+    <button *ngIf="showMore" (click)="loadMore()" class="more-button">Więcej</button>
 </div>

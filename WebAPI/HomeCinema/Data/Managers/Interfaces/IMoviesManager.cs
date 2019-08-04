@@ -9,6 +9,8 @@ namespace HomeCinema.Data
     {
         Task<List<Movie>> GetMovies(int skip = 0, int limit = 0);
 
+        Task<int> GetMoviesCount();
+
         Task<List<Movie>> GetMoviesByCategory(int categoryId);
 
         Task<Movie> GetMovieById(int id);

@@ -62,6 +62,26 @@ namespace HomeCinema.Controllers
             }
         }
 
+        [HttpGet("count", Name = "GetMoviesCount")]
+        public async Task<IActionResult> GetCount()
+        {
+            try
+            {
+
+                    int movieCount = await _moviesManager.GetMoviesCount();
+
+                    return Ok(movieCount);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound();
+            }
+            catch (CouldNotPerformOperationException ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
         // POST: api/Movies
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Movie value)

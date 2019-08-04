@@ -16,6 +16,7 @@ namespace HomeCinema.Data
         private const string getMovieByIdQuery = "Select * from Movies where Id=@Id";
         private const string getMoviesByCategoryQuery = "Select * from Movies where CategoryId=@Id";
         private const string removeMovieByIdQuery = "Delete from Movies where Id=@Id";
+        private const string getMoviesCountQuery = "select count(*) from Movies";
 
         private readonly IConfiguration _config;
 
@@ -90,6 +91,17 @@ namespace HomeCinema.Data
                 var result = await conn.QueryAsync<Movie>(getMoviesByCategoryQuery, new { Id = categoryId});
 
                 return result.ToList();
+            }
+        }
+
+        public async Task<int> GetMoviesCount()
+        {
+            using (IDbConnection conn = Connection)
+            {
+                conn.Open();
+                var result = await conn.QuerySingleAsync<int>(getMoviesCountQuery);
+
+                return result;
             }
         }
     }

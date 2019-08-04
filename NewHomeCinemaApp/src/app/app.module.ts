@@ -7,6 +7,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 
 import {CategoriesService} from './services/categories.service';
 import {MoviesService} from './services/movies.service';
+import {AuthenticationService} from './services/authentication.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import { MainComponent } from './components/pages/main/main.component';
@@ -17,6 +18,10 @@ import { LibraryComponent } from './components/pages/library/library.component';
 import { ScreeningsComponent } from './components/screenings/screenings.component';
 import { ScreeningComponent } from './components/screening/screening.component';
 import { LoginInfoComponent } from './components/layout/login-info/login-info.component';
+import { LoginPageComponent } from './components/pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -29,14 +34,17 @@ import { LoginInfoComponent } from './components/layout/login-info/login-info.co
     LibraryComponent,
     ScreeningsComponent,
     ScreeningComponent,
-    LoginInfoComponent
+    LoginInfoComponent,
+    LoginPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [CategoriesService, MoviesService],
+  providers: [CategoriesService, MoviesService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

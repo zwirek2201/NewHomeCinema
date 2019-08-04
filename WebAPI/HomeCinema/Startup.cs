@@ -28,7 +28,7 @@ namespace HomeCinema
             {
                 o.AddPolicy("myPolicy", p =>
                 {
-                    p.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                    p.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials();
                 });
             });
 

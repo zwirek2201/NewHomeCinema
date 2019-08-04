@@ -18,9 +18,7 @@ export class ScreeningsComponent implements OnInit {
 
   ngOnInit() {
     var d = new Date();
-    d.setYear(2019);
-    d.setMonth(6);
-    d.setDate(29);
+    
     this.repertoirService.GetDayRepertoir(d).subscribe(r => {
       this.movieScreenings = r;
       console.log(this.movieScreenings);

@@ -38,13 +38,20 @@ namespace HomeCinema.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]LoginRequestInfo info)
         {
-            LoginResponseInfo response = await _usersManager.AuthenticateUser(info);
-
-            if(response != null)
+            try
             {
-                return Ok(response);
+                LoginResponseInfo response = await _usersManager.AuthenticateUser(info);
+
+                if (response != null)
+                {
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            else
+            catch(Exception ex)
             {
                 return BadRequest();
             }

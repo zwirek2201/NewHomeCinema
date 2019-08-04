@@ -1,0 +1,7 @@
+{
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/5510e163-a155-42d7-b8f3-d93831cef7fb/resourceGroups/HomeCinema20190803012143ResourceGroup/providers/Microsoft.Web/sites/ChilliCinema",
+    "appService.deploySubpath": ""
+}
